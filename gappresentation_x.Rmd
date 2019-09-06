@@ -1,0 +1,50 @@
+---
+title: "The Gapminder Dataset"
+subtitle: "A Simple Exploration"
+author: "Jingyiran Li"
+date: "2019/09/06"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+## Some Characteristics of This Dataset
+```{r, echo=FALSE}
+library(gapminder)
+gapdata <- gapminder
+```
+- There are 6 variables with names shown below.
+```{r, echo=TRUE}
+cbind(names(gapminder))
+```
+
+- 1704 observations. 
+```{r, echo=TRUE}
+dim(gapminder)
+```
+
+---
+## A Glimpse into the Dataset
+```{r}
+head(gapminder)
+```
+
+---
+
+## Classification
+- We can obtain the classification of those variables:
+```{r}
+sapply(gapdata, class)
+```
+
+---
+## Summary of Quantitative Variables
+- Below is the five-number summary for the quantitative variables in this dataset:
+
+```{r}
+summary(gapdata[,c(3:6)])
+```
+
