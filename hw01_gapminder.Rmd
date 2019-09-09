@@ -1,0 +1,46 @@
+---
+title: "gapminder data exploration"
+output:
+  github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First, load the dataset.
+```{r}
+library(gapminder)
+gapdata <- gapminder
+```
+
+The structure of this dataset can be found as follows:
+
+```{r}
+str(gapminder)
+```
+The name of each variables in this dataset as well as the dimension of this dataset can be extracted by:
+
+```{r}
+names(gapminder)
+dim(gapminder)
+```
+
+
+First few rows of the dataset can be displayed:
+```{r}
+head(gapminder)
+```
+
+Classification of the variables present in the gapminder dataset can be obtained by:
+
+```{r}
+sapply(gapdata, class)
+```
+
+A five-number summary can be computed for the quantitative variables:
+```{r}
+summary(gapdata[,c(3:6)])
+```
+
+
