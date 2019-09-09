@@ -1,8 +1,7 @@
 ---
-title: "Hw01_gapminder"
+title: "gapminder data exploration"
 output:
-  html_document:
-    df_print: paged
+  github_document
 ---
 
 ```{r setup, include=FALSE}
