@@ -1,4 +1,4 @@
-gapminder data exploration
+Gapminder data exploration
 ================
 
 First, load the dataset.
