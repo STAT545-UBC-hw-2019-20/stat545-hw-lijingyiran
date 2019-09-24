@@ -8,6 +8,7 @@ library(gapminder)
 library(dplyr)
 library(tidyverse)
 library(datasets)
+library(tsibble)
 ```
 
 # Exercise 1: Basic `dplyr`
@@ -26,17 +27,19 @@ cuj %>%
 
 ##1.3
 ```{r}
-inc.in.lifeExp <- c(diff(gapminder$lifeExp), NA) #create a new variable of difference
-gapminder %>%  mutate(inc.in.lifeExp) %>%  #add variable as a column into gapminder
-  filter(inc.in.lifeExp < 0) #discard entries with a positive difference 
+gapminder %>% 
+  group_by(country) %>%
+  arrange(year) %>%  # put all entries in chronological order
+  mutate(lifeexp.inc = difference(lifeExp)) %>% #calculate and add lifeExp difference
+  drop_na() %>%  # discard NA
+  filter(lifeexp.inc < 0) # get all entries with a negative increase in lifeExp
 ```
 
 ##1.4
 ```{r}
-maxgdata <- gapminder %>% 
+gapminder %>% 
   group_by(country) %>% 
-  filter(gdpPercap == max(gdpPercap))
-maxgdata
+  summarize(max.gdpPercap = max(gdpPercap))
 ```
 ## 1.5
 ```{r}
