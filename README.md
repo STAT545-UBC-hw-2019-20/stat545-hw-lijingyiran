@@ -8,11 +8,11 @@
 ## What's in this repo?
 This repository contains my assignment solutions from  **_STAT 545A: Exploratory Data Analysis_** offered at the University of British Columbia. 
 
-|Assignment | Link to Folder |
+|Assignment | Link to Folder/Website |
 |:----------:|:-------------------:|
 | 1 |[hw_01](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_01) |
 | 2 |[hw_02](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_02)|
-| 3 |-|
+| 3 |[hw_03](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_03), [HTML Version](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-lijingyiran/hw_03/a3.html)|
 | 4 |-|
 | 5 |-|
 
