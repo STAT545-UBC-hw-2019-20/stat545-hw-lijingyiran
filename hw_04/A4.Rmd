@@ -1,0 +1,84 @@
+---
+title: "Assignment 4: Tidy data and joins"
+output:
+  html_document:
+    toc: true
+---
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(gapminder)
+library(ggplot2)
+```
+
+#Exercise 1: Univariate Data Reshaping
+## 1.1
+Make a tibble with one row per year, and columns for life expectancy for two or more countries.
+```{r}
+gapwide <- gapminder %>% 
+  filter(country == "Afghanistan" | country == "Algeria") %>% 
+  pivot_wider(id_cols = year,
+              names_from = country,
+              values_from = lifeExp)
+DT::datatable(gapwide)
+```
+
+##1.2
+Take advantage of this new data shape to make a scatterplot of life expectancy of one country against that of another.
+
+```{r}
+gapwide %>% 
+  ggplot(aes(x=Afghanistan, y=Algeria)) +
+  geom_point(size=2, shape=23) +
+  labs(title = "Life Expectancy of Afghanistanis vs that of Algerians in 1952-2007",
+       x = "Afghanistanis' Age (years)", y = "Algerians' Age (years)" ) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+##1.3
+Re-lengthen the dataset
+```{r}
+gapwide %>% 
+  pivot_longer(cols = -year,
+               names_to = "country",
+               values_to = "life.exp") %>% 
+  arrange(country) %>% 
+  DT::datatable()
+```
+ 
+#Exercise 2: Multivariate Data Reshaping
+
+##2.1
+Make a tibble with one row per year, and columns for life expectancy and GDP per capita (or two other numeric variables) for two or more countries.
+```{r}
+multigapwide <- gapminder %>% 
+  filter(country == "Afghanistan" | country == "Algeria") %>% 
+  pivot_wider(id_cols = year,
+              names_from = country,
+              values_from = c(gdpPercap, lifeExp))
+DT::datatable(multigapwide)
+```
+ 
+
+##2.2
+Re-lengthen the data.
+```{r}
+multigapwide %>% 
+  pivot_longer(cols = -year,
+               names_to = c(".value", "country"),
+               names_sep = "_" ) %>% 
+  arrange(country) %>% 
+  DT::datatable()
+```
+
+#Exercise 3: Table Joins
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+guest <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/attend.csv")
+email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/emails.csv")
+```
+ 
+##3.1
+For each guest in the guestlist (guest tibble), add a column for email address, which can be found in the email tibble.
+
+
+
