@@ -4,10 +4,11 @@ output:
   html_document:
     toc: true
 ---
-```{r, warning = FALSE, message = FALSE}
+```{r, warning = FALSE, message = FALSE, include=F}
 library(tidyverse)
 library(gapminder)
 library(ggplot2)
+library(readr)
 ```
 
 #Exercise 1: Univariate Data Reshaping
@@ -79,6 +80,34 @@ email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/maste
  
 ##3.1
 For each guest in the guestlist (guest tibble), add a column for email address, which can be found in the email tibble.
+
+```{r}
+colnames(email)[colnames(email) == "guest"] <- "name" #make name column same across datasets
+guest %>% 
+  left_join(email, by = "name") %>% 
+  DT::datatable()
+```
+
+##3.2
+Who do we have emails for, yet are not on the guestlist?
+
+```{r}
+emailnew <- separate_rows(email, name, sep = ", ", convert = T) #separate guests' names
+emailnew %>% 
+  anti_join(guest, by = "name") %>% 
+  DT::datatable()
+```
+Turner, Albert, and Vivian all have emails but not on the guestlist. 
+
+##3.3
+Make a guestlist that includes everyone we have emails for (in addition to those on the original guestlist).
+
+```{r}
+guest %>% 
+  full_join(emailnew, by = "name") %>% 
+  DT::datatable()
+```
+
 
 
 
