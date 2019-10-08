@@ -23,6 +23,8 @@ gapwide <- gapminder %>%
 DT::datatable(gapwide)
 ```
 
+Now, the table above has successfully filtered out Afghanistan as well as Algeria and ordered them based on ascending year with a corresponding life expectancy (in years) for each year and country. 
+
 ##1.2
 Take advantage of this new data shape to make a scatterplot of life expectancy of one country against that of another.
 
@@ -35,6 +37,9 @@ gapwide %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+
+Overall, the trend depicted by the scatterplot above suggests that the Algerians generally have a higher life expectancy than the Afghans for each year in 1952 to 2007.
+
 ##1.3
 Re-lengthen the dataset
 ```{r}
@@ -45,6 +50,9 @@ gapwide %>%
   arrange(country) %>% 
   DT::datatable()
 ```
+
+
+Now, we can reformat the table produced in 1.1 by making country a separate column with a corresponding year and life expectancy as shown above. 
  
 #Exercise 2: Multivariate Data Reshaping
 
@@ -58,7 +66,11 @@ multigapwide <- gapminder %>%
               values_from = c(gdpPercap, lifeExp))
 DT::datatable(multigapwide)
 ```
- 
+
+
+First, we can filter by country, then obtain names from country and values from GDP per Capita and life expectancy from the selected countries. 
+
+We can discern from the table that GDP per Capita and life expectancy are separated and grouped with each country. All values are arranged chronologically based on the year column.
 
 ##2.2
 Re-lengthen the data.
@@ -71,6 +83,9 @@ multigapwide %>%
   DT::datatable()
 ```
 
+
+Instead of putting attributes of each country into different columns, we can actually create a country column and some columns of attributes of interest as shown above. The re-lengthened data is now grouped by country and year with corrresponding GDP per Capita and life expectancy information depicted beside it.
+
 #Exercise 3: Table Joins
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
@@ -82,21 +97,26 @@ email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/maste
 For each guest in the guestlist (guest tibble), add a column for email address, which can be found in the email tibble.
 
 ```{r}
-colnames(email)[colnames(email) == "guest"] <- "name" #make name column same across datasets
+emailnew <- separate_rows(email, guest, sep = ", ") %>% 
+  rename(name = guest) #separate guests' names and rename 'name' column
+
 guest %>% 
-  left_join(email, by = "name") %>% 
+  left_join(emailnew, by = "name") %>% 
   DT::datatable()
 ```
+
+
+Now, an email column with information extracted from the email dataset has been added into the guest dataset. Therefore, guests' information can be accessed via examining one dataset instead of two. 
 
 ##3.2
 Who do we have emails for, yet are not on the guestlist?
 
 ```{r}
-emailnew <- separate_rows(email, name, sep = ", ", convert = T) #separate guests' names
 emailnew %>% 
   anti_join(guest, by = "name") %>% 
   DT::datatable()
 ```
+
 Turner, Albert, and Vivian all have emails but not on the guestlist. 
 
 ##3.3
@@ -109,5 +129,6 @@ guest %>%
 ```
 
 
+By using `full_join()` to join the two datasets, we have created a guestlist with additional email information. 
 
 
