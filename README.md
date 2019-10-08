@@ -13,7 +13,7 @@ This repository contains my assignment solutions from  **_STAT 545A: Exploratory
 | 1 |[hw_01](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_01) |
 | 2 |[hw_02](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_02)|
 | 3 |[hw_03](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_03)|
-| 4 |-|
+| 4 |[hw_04](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_04)|
 | 5 |-|
 
 
