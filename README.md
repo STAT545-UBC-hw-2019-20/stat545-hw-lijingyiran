@@ -14,7 +14,7 @@ This repository contains my assignment solutions from  **_STAT 545A: Exploratory
 | 2 |[hw_02](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_02)|
 | 3 |[hw_03](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_03)|
 | 4 |[hw_04](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_04)|
-| 5 |-|
+| 5 |[hw_05](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-lijingyiran/tree/master/hw_05))|
 
 
 
